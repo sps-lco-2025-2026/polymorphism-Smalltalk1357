@@ -2,4 +2,5 @@
   <Project Path="People/People.csproj" />
   <Project Path="PolymorphismExample.App/PolymorphismExample.App.csproj" />
   <Project Path="PolymorphismExample.Lib/PolymorphismExample.Lib.csproj" />
+  <Project Path="Tests/Tests.csproj" />
 </Solution>
