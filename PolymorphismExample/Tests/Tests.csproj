@@ -5,21 +5,18 @@
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="6.0.4"/>
-        <PackageReference Include="MSTest" Version="4.2.1" />
+        <PackageReference Include="MSTest" Version="4.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Using Include="NUnit.Framework"/>
+        <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\People\People.csproj" />
-      <ProjectReference Include="..\PolymorphismExample.Lib\PolymorphismExample.Lib.csproj" />
     </ItemGroup>
 
 </Project>

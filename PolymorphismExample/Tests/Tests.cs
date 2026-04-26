@@ -21,7 +21,14 @@ public class Tests
     [TestMethod]
     public void TestBirthdayValidation()
     {
-        Person p = new Person("John", "Doe", "", "1990-01-01");
-        Assert.AreEqual("", p.Email);
+        try
+        {
+            Person p = new Person("John", "Doe", "", "1990-20-20");
+            Assert.Fail();
+        }
+        catch (ArgumentException e)
+        {
+            Assert.AreEqual("Invalid date format", e.Message);
+        }
     }
 }
