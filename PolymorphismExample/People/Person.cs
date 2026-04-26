@@ -1,7 +1,6 @@
-﻿using System.Runtime.InteropServices.JavaScript;
+﻿namespace People;
 
-namespace People;
-
+// Date format: YYYY-MM-DD
 public class Person(string name, string surname, string email, DateOnly birthday)
 {
     public string Name { get; } = name;
@@ -50,5 +49,13 @@ public class Person(string name, string surname, string email, DateOnly birthday
     public bool IsAdult()
     {
         return Age() >= 18;
+    }
+
+    /// <summary>
+    /// Checks if it's the person's birthday
+    /// </summary>
+    public bool IsBirthday()
+    {
+        return DateOnly.FromDateTime(DateTime.Now) == Birthday;
     }
 }
