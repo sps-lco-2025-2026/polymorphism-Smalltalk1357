@@ -3,10 +3,10 @@
 // Date format: YYYY-MM-DD
 public class Person(string name, string surname, string email, DateOnly birthday)
 {
-    public string Name { get; } = name;
-    public string Surname { get; } = surname;
-    public string Email { get; } = email;
-    public DateOnly Birthday { get; } = birthday;
+    protected string Name { get; } = name;
+    protected string Surname { get; } = surname;
+    protected string Email { get; } = email;
+    protected DateOnly Birthday { get; } = birthday;
 
     /// <summary>
     /// Constructor
@@ -19,7 +19,6 @@ public class Person(string name, string surname, string email, DateOnly birthday
     /// <summary>
     /// Validates if Birthday is a valid date format, otherwise throws an exception.
     /// </summary>
-    ///
     private static DateOnly Validate(string birthday)
     {
         if (DateOnly.TryParse(birthday, out DateOnly tBirthday))
@@ -30,7 +29,7 @@ public class Person(string name, string surname, string email, DateOnly birthday
     }
 
     /// <summary>
-    /// Calculates the age of the person
+    /// Calculates the age of the person in years
     /// </summary>
     public int Age()
     {
@@ -38,7 +37,8 @@ public class Person(string name, string surname, string email, DateOnly birthday
         int age = now.Year - Birthday.Year;
         
         // if the birthday hasn't happened yet this year, subtract 1
-        if (now < Birthday.AddYears(age)) age--;
+        if (now < Birthday.AddYears(age)) 
+            age--;
         
         return age;
     }
@@ -63,7 +63,7 @@ public class Person(string name, string surname, string email, DateOnly birthday
     /// <summary>
     /// Returns a screen name for the person
     /// </summary>
-    public string ScreenName()
+    public virtual string ScreenName()
     {
         return $"{Surname}{Name[0]}{Birthday.Year}";
     }

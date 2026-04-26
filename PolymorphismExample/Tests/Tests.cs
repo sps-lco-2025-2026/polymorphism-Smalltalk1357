@@ -4,13 +4,7 @@ using People;
 [TestClass]
 public class Tests
 {
-    [TestMethod]
-    public void CheckBirthday()
-    {
-        Person p = new Person("John", "Doe", "", "1990-01-01");
-        Assert.AreEqual(p.Birthday, DateOnly.FromDateTime(new DateTime(1990, 1, 1)) );
-    }
-    
+    // Test Person Class
     [TestMethod]
     public void CheckBirthdayValidation()
     {
@@ -41,6 +35,28 @@ public class Tests
         Person p2 = new Person("John", "Doe", "", "2010-04-26");
         Assert.IsTrue(p2.IsBirthday());
     }
-    
+
+    [TestMethod]
+    public void TestScreenName()
+    {
+        Person p = new Person("John", "Doe", "", "1990-01-01");
+        Assert.AreEqual("DoeJ1990", p.ScreenName());
+    }
     // Date format: YYYY-MM-DD
+    
+    // Test Student Class
+    [TestMethod]
+    public void TestStudentScreenName()
+    {
+        Student s = new Student("John", "Doe", "", "1990-01-01", 11);
+        Assert.AreEqual("DoeJ1990-11", s.ScreenName());
+    }
+    
+    // Test Teacher Class
+    [TestMethod]
+    public void TestTeacherScreenName()
+    {
+        Teacher t = new Teacher("John", "Doe", "", "1990-01-01", "Maths");
+        Assert.AreEqual("DoeJ1990-Teacher[Maths]", t.ScreenName());
+    }
 }
