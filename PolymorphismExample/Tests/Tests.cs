@@ -59,4 +59,19 @@ public class Tests
         Teacher t = new Teacher("John", "Doe", "", "1990-01-01", "Maths");
         Assert.AreEqual("DoeJ1990-Teacher[Maths]", t.ScreenName());
     }
+
+    [TestMethod]
+    public void TestList()
+    {
+        List<Person> people = new List<Person>();
+        people.Add(new Person("John", "Doe", "", "1990-01-01"));
+        people.Add(new Student("Jane", "Smith", "", "1985-05-15", 12));
+        people.Add(new Teacher("Bob", "Johnson", "", "1970-08-20", "Science"));
+
+        foreach (Person p in people)
+        {
+            Console.WriteLine(p.ScreenName());
+        }
+        Assert.HasCount(3, people);
+    }
 }
