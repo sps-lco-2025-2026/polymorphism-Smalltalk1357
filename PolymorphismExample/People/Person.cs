@@ -56,6 +56,15 @@ public class Person(string name, string surname, string email, DateOnly birthday
     /// </summary>
     public bool IsBirthday()
     {
-        return DateOnly.FromDateTime(DateTime.Now) == Birthday;
+        DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+        return (currentDate.Month == Birthday.Month && currentDate.Day == Birthday.Day);
+    }
+
+    /// <summary>
+    /// Returns a screen name for the person
+    /// </summary>
+    public string ScreenName()
+    {
+        return $"{Surname}{Name[0]}{Birthday.Year}";
     }
 }
