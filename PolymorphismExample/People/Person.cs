@@ -1,4 +1,6 @@
-﻿namespace People;
+﻿using System.Globalization;
+
+namespace People;
 
 // Date format: YYYY-MM-DD
 public class Person(string name, string surname, string email, DateOnly birthday)
@@ -59,7 +61,42 @@ public class Person(string name, string surname, string email, DateOnly birthday
         DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
         return (currentDate.Month == Birthday.Month && currentDate.Day == Birthday.Day);
     }
+    
+    /// <summary>
+    /// Calculates the Chinese zodiac sign of the person using simple 'divide by twelve' formula
+    /// - not accurate for some birthdays in january/february 
+    /// </summary>
+    public string ChineseZodiac1()
+    {
+        string[] animalList = [
+            "Monkey", "Rooster", "Dog", "Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat"];
+        
+        string[] elementList = ["Metal", "Wood", "Water", "Fire", "Earth"];
+        
+        int year = Birthday.Year;
+        
+        int animal = year % 12;
+        int element = (year % 10) / 2;
+        
+        return $"{elementList[element]} {animalList[animal]}";
+    }
 
+    /// <summary>
+    /// A more accurate calculation of the chinese zodiac using builtin ChineseLunisolarCalendar
+    /// </summary>
+    public string ChineseZodiac2()
+    {
+        string[] animalList =
+        [
+            "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"
+        ];
+        var calendar = new ChineseLunisolarCalendar();
+        DateTime birthdate = Birthday.ToDateTime(TimeOnly.MinValue);
+        int chineseYear = calendar.GetYear(birthdate);
+        int index = ((chineseYear - 4) % 12 + 12) % 12;
+        return animalList[index];
+    }
+    
     /// <summary>
     /// Returns a screen name for the person
     /// </summary>

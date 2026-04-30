@@ -32,7 +32,8 @@ public class Tests
         Person p = new Person("John", "Doe", "", "1990-01-01");
         Assert.IsFalse(p.IsBirthday());
         
-        Person p2 = new Person("John", "Doe", "", "2010-04-26");
+        // !!! THIS NEEDS TO BE UPDATED FOR TODAY'S DATE !!!
+        Person p2 = new Person("John", "Doe", "", "2010-04-30");
         Assert.IsTrue(p2.IsBirthday());
     }
 
@@ -43,6 +44,23 @@ public class Tests
         Assert.AreEqual("DoeJ1990", p.ScreenName());
     }
     // Date format: YYYY-MM-DD
+
+    [TestMethod]
+    public void TestZodiacSign()
+    {
+        Person p = new Person("John", "Doe", "", "2019-01-01");
+        Assert.AreEqual("Earth Pig", p.ChineseZodiac1());
+        
+        Person s = new Person("Jane", "Doe", "", "2008-02-02");
+        Assert.AreEqual("Earth Rat", s.ChineseZodiac1());
+    }
+
+    [TestMethod]
+    public void TestZodiacSign2()
+    {
+        Person p = new Person("John", "Doe", "", "1974-01-10");
+        Assert.AreEqual("Ox", p.ChineseZodiac2());
+    }
     
     // Test Student Class
     [TestMethod]
